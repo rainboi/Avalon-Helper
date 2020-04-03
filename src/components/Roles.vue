@@ -1,12 +1,11 @@
 <template>
     <div class="roles">
         <div class="role" v-for="role in roles" :key="role.name">
-            <label :for="role.name">{{role.name}}</label>
+            <label :class="{ 'evil': role.isEvil }" :for="role.name">{{role.name}}</label>
             <input
                 :disabled="!role.optional || inGame"
                 type="checkbox"
                 :name="role.name"
-                :class="{ 'Evil': role.isEvil }"
                 :checked="role.enabled"
                 @input="roleEnabled(role)"
             />
@@ -34,5 +33,27 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.role {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 140px;
+    text-align: start;
+    font-size: 23px;
+    font-family: "Tajawal-Bold";
+    color: #fff;
+    align-items: center;
+    margin: 3px auto;
+    color: #72f542;
+}
+
+.role > input {
+    height: 18px;
+    width: 18px;
+    border: none;
+}
+
+.evil {
+    color: #ed0211;
+}
 </style>
